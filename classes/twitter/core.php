@@ -1339,7 +1339,7 @@ class Twitter_Core {
 		$this->headers = '';
 
 		// debug output
-		if (!IN_PRODUCTION AND Kohana::config('twitter')->debug) $this->debugo($data, $post_data);
+		if ((Kohana::$environment !== Kohana::PRODUCTION) AND Kohana::config('twitter')->debug) $this->debugo($data, $post_data);
 		
 		if ( ! $post)
 		{
