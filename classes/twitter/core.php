@@ -10,6 +10,10 @@
 
 class Twitter_Core {
 
+	// Password
+	private $username;
+	// Username
+	private $password;
 	// Username:password format string
 	private $login;
 	// Url to string to call
@@ -92,9 +96,11 @@ class Twitter_Core {
 	 * @param  string  $application	Twitter application name
 	 * @param  string  $format		Encoding format
 	 */
-	public function __construct($username, $password, $application = FALSE, $format = FALSE)
+	public function __construct($username = FALSE, $password = FALSE, $application = FALSE, $format = FALSE)
 	{
-		$this->login = "$username:$password";
+		$this->username = ($username) ? $username : (Kohana::config('twitter.username'));
+		$this->password = ($password) ? $password : (Kohana::config('twitter.password'));
+		$this->login = $this->username.':'.$this->password;
 		$this->application = ($application) ? $application : (Kohana::config('twitter')->application);
 		$this->application = urlencode($this->application);
 		$this->format = ($format) ? $format : (Kohana::config('twitter')->format);

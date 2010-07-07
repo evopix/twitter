@@ -3,6 +3,16 @@
 return array(
 
 	/**
+	 * Twitter account username.
+	 */
+	'username' => NULL,
+	
+	/**
+	 * Twitter account password.
+	 */
+	'password' => NULL,
+
+	/**
 	 * Default application name. ex: "about 11 hours ago from Kohana Twitterlib"
 	 * To register your app with Twitter go here - http://twitter.com/help/request_source.
 	 * So when tweeting it will say something other than 'from Web'.
