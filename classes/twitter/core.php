@@ -1282,6 +1282,16 @@ class Twitter_Core {
 	 */
 	private function connect($login = FALSE, $post = FALSE, $post_data = NULL)
 	{
+		if ( ! $post)
+		{
+			$data = Kohana::cache($this->url);
+			
+			if ($data !== NULL)
+			{
+				return $data;
+			}
+		}
+		
 		// If credentials are required add them
 		if ($login) $login = $this->login;
 		// add default header info
@@ -1330,7 +1340,12 @@ class Twitter_Core {
 
 		// debug output
 		if (!IN_PRODUCTION AND Kohana::config('twitter')->debug) $this->debugo($data, $post_data);
-
+		
+		if ( ! $post)
+		{
+			Kohana::cache($this->url, $data, 1800);
+		}
+		
 		return $data;
 	}
 
