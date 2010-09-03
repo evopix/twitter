@@ -182,6 +182,11 @@ class Twitter_Core {
 		array_shift($args);
 		$this->add(array('count', 'since', 'since_id'), $args);
 
+		if ($id)
+		{
+			return $this->connect();
+		}
+
 		return $this->connect(TRUE);
 	}
 
